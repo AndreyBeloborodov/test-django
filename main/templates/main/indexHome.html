@@ -1,34 +1,58 @@
-{% extends 'main/base.html' %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Itis Tests</title>
+  <link rel="stylesheet" href="{% static 'css/style_P1.css' %}">
+</head>
+<body>
+  <header>
+    <div id="logo" onclick="slowScroll('#top')">
+        <span>Itis Tests</span>
+    </div>
+    <div id="about">
+      <a href="#" onclick="slowScroll('#contacts')" title="Контакты">Создатели</a>
+    </div>
+  </header>
 
-{% block span %}
-    Тестирование на знание языка Python
-{% endblock %}
+  <div id="top">
+    <h1>Программирование как способ жизни!</h1>
+    <h3>Проверим ваше знание языка Python</h3>
+    <h3> </h3>
+    <a href="{% url 'testing' %}"><button onclick="" class="button">Начать тест</button></a>
+  </div>
 
-{% block title %}
-    Вопрос
-{% endblock %}
+  <div id="main">
+    <div class="intro">
+      <h2>Наши услуги помогут вам определить ваши знания языка Python!</h2>
 
-{% block content %}
+    </div>
+  </div>
 
-    <h1>
-        {{question.question}}
-    </h1>
-    {% if question.answer %}
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'good' %}">Правда</a>
-    </nav>
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'bad' %}">Ложь</a>
-    </nav>
-    {% endif %}
+  <div id="contacts">
+    <center><h5>Создатели</h5></center>
+    <h6>Нишанбаев Тимур 11-000</h6>
+    <h6>Латыпова Айрина 11-000</h6>
+    <h6>Шахвердиев Фирудин 11-000</h6>
+    <h6>Белобородов Андрей Станиславович 11-000</h6>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function slowScroll(id) {
+      $('html, body').animate({
+        scrollTop: $(id).offset().top
+      }, 500);
+    }
 
-    {% if not question.answer %}
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'bad' %}">Правда</a>
-    </nav>
-    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'good' %}">Ложь</a>
-    </nav>
-    {% endif %}
-
-{% endblock %}
+    $(document).on("scroll", function () {
+      if($(window).scrollTop() === 0)
+        $("header").removeClass("fixed");
+      else
+        $("header").attr("class", "fixed");
+    });
+  </script>
+</body>
+</html>

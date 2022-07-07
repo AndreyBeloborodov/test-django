@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block span %}
+    Тот самый тест по Python
+{% endblock %}
+
+{% block title %}
+    Вопрос
+{% endblock %}
+
+{% block content %}
+
+    <h1 class="questioncss">
+        {{question.question}}
+    </h1>
+    <h1> </h1>
+    {% if question.answer %}
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'good' %}">Правда</a>
+    </nav>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'bad' %}">Ложь</a>
+    </nav>
+    {% endif %}
+
+    {% if not question.answer %}
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'bad' %}">Правда</a>
+    </nav>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{% url 'good' %}">Ложь</a>
+    </nav>
+    {% endif %}
+
+{% endblock %}

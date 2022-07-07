@@ -1,3 +1,7 @@
 body {
     background: url(newback.png);
 }
+
+h1.questioncss {
+    width: 1000px;
+}
